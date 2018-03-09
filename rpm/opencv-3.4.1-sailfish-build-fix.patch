@@ -1,0 +1,22 @@
+From 2020cd7432af80c555d1032336a0e93fe362908f Mon Sep 17 00:00:00 2001
+From: Vasil Filipov <vakko_vakko@abv.bg>
+Date: Fri, 9 Mar 2018 15:38:22 +0200
+Subject: [PATCH] Sailfish build fix - (__gnu_f2h_ieee is referenced by DSO)
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1ab31582f..6ef45980e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -593,7 +593,7 @@ if(UNIX)
+     elseif(EMSCRIPTEN)
+       # no need to link to system libs with emscripten
+     else()
+-      set(OPENCV_LINKER_LIBS ${OPENCV_LINKER_LIBS} dl m pthread rt)
++      set(OPENCV_LINKER_LIBS ${OPENCV_LINKER_LIBS} dl m pthread rt gcc_s gcc)
+     endif()
+   else()
+     set(HAVE_PTHREAD 1)
